@@ -1,6 +1,10 @@
 const InitPGPToolPage = () => {
 };
 
+const CopyText = (txt) => {
+    navigator.clipboard.writeText(txt);
+};
+
 const ShineParent = (element) => {
     element = element.parentElement;
     //repeat animation
@@ -25,7 +29,28 @@ const ClickGenerate = async () => {
 };
 
 const ClickEncrypt = async () => {
+    //get result
+    const result = await EncryptMessage(PublicKey.value, Message.value);
+    //apply
+    console.log(result);
+    Output.value = result;
+    //shine
+    ShineParent(PublicKey);
+    ShineParent(Message);
+    ShineParent(Output);
+};
 
+const ClickDecrypt = async () => {
+    //get result
+    const result = await DecryptMessage(Password.value, PrivateKey.value, Message.value);
+    //apply
+    console.log(result);
+    Output.value = result.data;
+    //shine
+    ShineParent(PrivateKey);
+    ShineParent(Password);
+    ShineParent(Message);
+    ShineParent(Output);
 };
 
 const GenerateRSAPGP = async (password,rsaBits) => {
@@ -39,4 +64,28 @@ const GenerateRSAPGP = async (password,rsaBits) => {
         publicKey: publicKey
         ,privateKey: privateKey
     };
+};
+
+const EncryptMessage = async (publicKeyArmored, messageArmored) => {
+    return await openpgp.encrypt({
+        message: await openpgp.createMessage({ text: messageArmored })
+        ,encryptionKeys: await openpgp.readKey({ armoredKey: publicKeyArmored })
+    });
+};
+
+const DecryptMessage = async (password, privateKeyArmored , messageArmored) => {
+
+    const privateKey  = await openpgp.decryptKey({
+        privateKey: await openpgp.readPrivateKey({ armoredKey: privateKeyArmored }),
+        password
+    });
+
+    const message = await openpgp.readMessage({
+        armoredMessage: messageArmored
+    });
+
+    return await openpgp.decrypt({
+        message
+        ,decryptionKeys: privateKey
+    });
 };

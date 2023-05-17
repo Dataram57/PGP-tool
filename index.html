@@ -37,11 +37,13 @@
                 <h3>Output:</h3>
                 <textarea id="Output" cols="50" rows="10" disabled>dd</textarea>
                 <div class="text-right">
-                    <button>Copy</button>
+                    <button onclick="CopyText(Output.value)">Copy</button>
                 </div>
             </div>
         </div>
+        <!--OpenPGP imported via FILE protocol-->
         <script src="node_modules/openpgp/dist/openpgp.min.js"></script>
+        <!--Rest...-->
         <script src="index.js"></script>
         <script>
             const PrivateKey = document.getElementById('PrivateKey');
