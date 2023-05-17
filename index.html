@@ -4,10 +4,52 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <link rel="stylesheet" href="index.css">
+        <title>PGP tool</title>
     </head>
     <body>
+        <h1 class="text-center">PGP tool</h1>
+        <div class="row">
+            <div>
+                <h3>Private Key:</h3>
+                <textarea id="PrivateKey" cols="50" rows="10"></textarea>
+            </div>
+            <div>
+                <h3>Public Key:</h3>
+                <textarea id="PublicKey" cols="50" rows="10"></textarea>
+            </div>
+            <div>
+                <h3>Message:</h3>
+                <textarea id="Message" cols="50" rows="10"></textarea>
+            </div>
+            <br>
+            <div class="row text-center">
+                <button onclick="ClickEncrypt()">Encrypt</button>
+                <button onclick="ClickDecrypt()">Decrypt</button>
+                <div>
+                    Password: <input type="password" id="Password">
+                </div>
+                <button onclick="ClickGenerate()">Generate PGP</button>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <h3>Output:</h3>
+                <textarea id="Output" cols="50" rows="10" disabled>dd</textarea>
+                <div class="text-right">
+                    <button>Copy</button>
+                </div>
+            </div>
+        </div>
         <script src="node_modules/openpgp/dist/openpgp.min.js"></script>
         <script src="index.js"></script>
+        <script>
+            const PrivateKey = document.getElementById('PrivateKey');
+            const PublicKey = document.getElementById('PublicKey');
+            const Message = document.getElementById('Message');
+            const Output = document.getElementById('Output');
+            const Password = document.getElementById('Password');
+            InitPGPToolPage();
+        </script>
     </body>
 </html>

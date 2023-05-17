@@ -1,0 +1,33 @@
+.row{
+    float: left;
+    border: 1px solid black;
+    margin: 20px;
+}
+.row > div{
+    margin: 10px;
+    padding: 10px;
+    display: block;
+    float: left;
+}
+.row > button{
+    margin: 20px;
+}
+.text-center{
+    text-align: center;
+}
+.text-right{
+    text-align: right;
+}
+textarea{
+    background-color: RGBA(0,0,0,0);
+}
+textarea:disabled{
+    background-color: RGBA(1,1,1,0.08);
+}
+.fx-shine1{
+    animation: keys-fx-shine1 1s;
+}
+    @keyframes keys-fx-shine1 {
+        0% { background-color: #00FF00; }
+        100% { background-color: #00000000 }
+    }
