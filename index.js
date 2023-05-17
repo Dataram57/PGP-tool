@@ -32,7 +32,6 @@ const ClickEncrypt = async () => {
     //get result
     const result = await EncryptMessage(PublicKey.value, Message.value);
     //apply
-    console.log(result);
     Output.value = result;
     //shine
     ShineParent(PublicKey);
@@ -44,7 +43,6 @@ const ClickDecrypt = async () => {
     //get result
     const result = await DecryptMessage(Password.value, PrivateKey.value, Message.value);
     //apply
-    console.log(result);
     Output.value = result.data;
     //shine
     ShineParent(PrivateKey);
